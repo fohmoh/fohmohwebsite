@@ -1,0 +1,38 @@
+/*==========================================
+==== This Page is Developed BY M.Ibrahim
+==== URL: fiverribrahm.000webhostapp.com
+==== Profile: fiverr.com/ibrahm; 
+==========================================*/
+.text-dark{
+	color: #2B2B2B !important;
+}
+.bg-dark{
+	background: #2B2B2B !important;
+}
+
+
+.disable-caret::after{
+	display: none !important;
+}
+
+.filter .dropdown{
+	position: static !important;
+}
+.filter .dropdown-menu{
+	text-align: center;
+ 	width: 100%;
+ 	border-radius: 0 !important;
+ 	border: 0 !important;
+ 	left: 0 !important;
+ 	right: 0 !important;
+ 	transform: translate3d(0, 136px, 0px) !important;
+ 	border-bottom: 2px solid rgba(0, 0, 0, 1) !important;
+}
+.filter .dropdown-menu li{
+	margin-right: 2px !important;
+	margin-left: 2px !important;
+}
+
+footer{
+	margin-top: 40px;
+}
