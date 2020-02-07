@@ -1,17 +1,20 @@
 <?php
 session_start();
 include_once('config.php');
+
+
+// The id of the item on the menu we are making an image for 
 $uploadid = $_SESSION['uploadid'];
+
+// The data (base64) of the image that has been recieved after crop
 $imagedata = $_POST['imgtemp'];
+
+
 $alert = $_SESSION['alert'];
 
 if(isset($imagedata)){
-$data = $imagedata;
-
-
-		
+        $data = $imagedata;
         
-
         $sql = "UPDATE menu
                 SET image = \"$data\"
                 WHERE id=$uploadid";
@@ -26,7 +29,7 @@ $data = $imagedata;
         
 	}
 
-//file_put_contents('uploads/image.png', $data);
+//Display an alert
 if($alert != null){
 	echo "<div class=\"alert alert-success alert-dismissable\" id=\"flash-msg\">
 		  <button aria-hidden=\"true\" data-dismiss=\"alert\" class=\"close\" type=\"button\">×</button>
@@ -80,7 +83,7 @@ img {
 </head>
 <body class="posr">
 <nav class="navbar navbar-expand-lg navbar-dark bg-warning d-flex d-xl-none">
-      <a class="navbar-brand" href="index.php"><img src="img/logo.png" alt=""></a>
+      <a class="navbar-brand" href="index.php"><img src="img/logo.png" width="30%" alt=""></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -174,7 +177,9 @@ img {
 	</footer>
 	<footer>
 <script>
-	
+	//Cropping tool
+
+
 	var canvas  = $("#canvas"),
 	    context = canvas.get(0).getContext("2d"),
 	    $result = $('#result');
@@ -192,6 +197,10 @@ img {
 	             context.canvas.width  = img.width;
 	             context.drawImage(img, 0, 0);
 	             var cropper = canvas.cropper({
+
+
+
+                // All of croppers options
                 aspectRatio: 1,
                 viewMode: 1,
                 cropBoxResizable: false,
@@ -204,15 +213,17 @@ img {
                 guides: false,
                 checkOrientation: 1,
                 background: false
+
+
+
 	             });
 	             $('#btnCrop').click(function() {
 	                // Get a string base 64 data url
 	                var croppedImageDataURL = canvas.cropper('getCroppedCanvas').toDataURL("image/jpeg", 0.7); 
-					$result.append( $('<img>').attr('src', croppedImageDataURL) );
-					// Creating a cookie after the document is ready 
-					//$(document).ready(function () { 
-					//	createCookie("imgtemp", croppedImageDataURL, 3);
-					//}); 
+					        $result.append( $('<img>').attr('src', croppedImageDataURL) );
+
+
+          // Send the resulting image to php via post
 					function autoUpload(it) {
 						var form = document.createElement("form");
 						var element1 = document.createElement("input"); 

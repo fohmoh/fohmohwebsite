@@ -4,7 +4,6 @@
   date_default_timezone_set('NZ');
   include_once('config.php');
   $company = $_SESSION['company'];
-  //$_SESSION['alert'] = 'testing';
   $alert = $_SESSION['alert'];
 
   $_SESSION['addtitle'] = "";
@@ -18,6 +17,8 @@
     exit();
   }
 
+
+  // If the user is out of stock of an item
   if($_SERVER["REQUEST_METHOD"] == "POST") {
       $hideid = $_POST['hide'];
       $showid = $_POST['show'];
@@ -69,7 +70,7 @@
   </head>
   <body class="posr">
     <nav class="navbar navbar-expand-lg navbar-dark bg-warning d-flex d-xl-none">
-      <a class="navbar-brand" href="index.php"><img src="img/logo.png" width="50%" alt=""></a>
+      <a class="navbar-brand" href="index.php"><img src="img/logo.png" width="30%" alt=""></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -195,6 +196,9 @@
               <h5 class="mn-0 fw-7">Menu Builder</h5>
               <div class="dropdown">
                 <a class="btn btn-outline-dark fw-7 border-0 py-0 dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  
+                  <!--Display all of the catagories in the menu for the drop down button-->
+                  
                   <?php $cataget = $_GET["catagory"]; 
                   if(isset($_GET["catagory"])){
                     echo $cataget;
@@ -250,6 +254,10 @@
                 </p>
               </li>
               <?php 
+
+                // Display all the items in the menu dependent on what catagories are chosen
+
+
                 session_start();
                 
                 $company = $_SESSION['company'];

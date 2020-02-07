@@ -103,7 +103,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body class="posr">
     <nav class="navbar navbar-expand-lg navbar-dark bg-warning d-flex d-xl-none">
-      <a class="navbar-brand" href="index.php"><img src="img/logo.png" alt=""></a>
+      <a class="navbar-brand" href="index.php"><img src="img/logo.png" width="30%" alt=""></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -174,9 +174,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <div class="row">
                                         <div class="col-lg-12">
                                                 <button type="submit"
-                                                    class="btn btn-primary">Add Catagory To Menu</button>
-                                                    <a class="btn btn-outline-primary" href="menubuilder.php"> Back To Menu Builder </a>
-                                        </div>
+                                                    class="btn btn-primary">Add Catagory To Menu</button>                                        </div>
                                     </div>
                                     <br><br>
                                     <h1 class="lead">Current Catagories</h1>
@@ -200,6 +198,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                                             }   
                                             mysqli_close($con);
                                         ?>
+                                      <a class="btn btn-outline-primary" href="menubuilder.php"> Back To Menu Builder </a>
+
                                 </form>
                             </div>
                         </div>

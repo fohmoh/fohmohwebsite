@@ -1614,3 +1614,31 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </body>
 </html>
+<?php 
+// Create connection
+$con=mysqli_connect("localhost","menubro","Menubro123","menubromain");
+//$company = $_SESSION['company'];
+$qz = "UPDATE stats set today = today + 1 where company = \"$dircompany\"";
+$result = mysqli_query($con,$qz);
+mysqli_close($con);
+date_default_timezone_set('GMT');
+$time = ((string) (int) date("h")) . date("a");
+$ampm = date("a");
+
+
+// Create connection
+$con=mysqli_connect("localhost","menubro","Menubro123","menubromain");
+//$company = $_SESSION['company'];
+$qz = "UPDATE stats set $time = $time + 1 where company = \"$dircompany\"";
+$result = mysqli_query($con,$qz);
+mysqli_close($con);
+
+
+// Create connection
+$con=mysqli_connect("localhost","menubro","Menubro123","menubromain");
+//$company = $_SESSION['company'];
+$qz = "UPDATE stats set day1 = today where company = \"$dircompany\"";
+$result = mysqli_query($con,$qz);
+mysqli_close($con);
+
+?>

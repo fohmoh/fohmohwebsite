@@ -1,7 +1,10 @@
 <?php
-    // We need to use sessions, so you should always start sessions using the below code.
     session_start();
+
+    //Database Information
     include_once('config.php');
+
+
     $error = false;
    if(isset($_POST['company']) && $_POST['company'] != "") {
       // username and password sent from form 
@@ -9,46 +12,45 @@
       $addemail = $_SESSION['email'];
       $addpassword = $_POST['password'];
 
+      //Company Name Url Friendly And Not
       $unencoded = clean($_POST['company']);
-
       $addcompany = rawurlencode($unencoded);
-      // Create connection
       
 
-    //echo $addusername, $addpassword, $addemail, $addconfirmemail, $addconfirmpassword, $addmenucount, $addcompany;
+
+    // Check if password or company name isn't filled in
     if($addpassword == "" ||  $addcompany == "")
     {
       $error = "Please fill in all fields";
       $error .= $addusername . $unencoded; 
     }
     else {
-      //if($addpassword == $addconfirmpassword && strlen($addpassword) >= 6)
-      //{
+        // Insert all information we have receiced into database and make default catagories
         $sql = "INSERT INTO survey(username, company) VALUES (\"$addusername\", \"$addcompany\")";
         $sql2 = "INSERT INTO users(company, username, email, passcode) values (\"$addcompany\", \"$addusername\", \"$addemail\", \"$addpassword\")";
         $sql3 = "INSERT INTO stats(company) VALUES (\"$addcompany\")";
-
-      //}
+        $sql4 = "INSERT INTO catagory(company, catagory) VALUES (\"$addcompany\", \"Breakfast\")";
+        $sql5 = "INSERT INTO catagory(company, catagory) VALUES (\"$addcompany\", \"Lunch\")";
+        $sql6 = "INSERT INTO catagory(company, catagory) VALUES (\"$addcompany\", \"Dinner\")";
     }
 
     if ($connection->query($sql) === TRUE) {
-      $message = "Record updated successfully";
+      // Copy Diner Files Accross
+
+        $message = "Record updated successfully";
         mkdir("../{$unencoded}", 0777, true);
         chmod("../{$unencoded}", 0777);                
-
-
 
         copy("../client/index.php", "../{$unencoded}/index.php");
         copy("../client/list-view.php", "../{$unencoded}/list-view.php");
         copy("../client/card-view.php", "../{$unencoded}/card-view.php");
                 
     } else {
-        //echo "Error updating record: " . $conn->error;
         $error = "Unfortunately there was a problem with your request. Please make sure that all fields are filled out.";
     }
 
     if ($connection->query($sql2) === TRUE) {
-      if ($connection->query($sql3) === TRUE) {
+      if ($connection->query($sql3) === TRUE && $connection->query($sql4) === TRUE && $connection->query($sql5) === TRUE && $connection->query($sql6) === TRUE) {
         //echo $addusername;
         header('Location: login.php');
       }

@@ -121,7 +121,7 @@ if (isset($_POST["submit"]) && $_POST["submit"] == "Add") {
   </head>
   <body class="posr">
     <nav class="navbar navbar-expand-lg navbar-dark bg-warning d-flex d-xl-none">
-      <a class="navbar-brand" href="index.php"><img src="img/logo.png" alt=""></a>
+      <a class="navbar-brand" href="index.php"><img src="img/logo.png" width="30%" alt=""></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
